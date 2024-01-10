@@ -30,5 +30,12 @@ namespace RepositoryLayer.Services
             return entity;
 
         }
+
+        public UserEntity GetUserById(int id)
+        {
+            UserEntity userdet = fundooContext.Users.FirstOrDefault(u => u.UserId == id);
+            return userdet;
+            
+        }
     }
 }

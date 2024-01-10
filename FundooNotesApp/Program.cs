@@ -1,6 +1,10 @@
+using BusinessLayer.Interface;
+using BusinessLayer.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using RepositoryLayer.Context;
+using RepositoryLayer.Interfaces;
+using RepositoryLayer.Services;
 
 namespace FundooNotesApp
 {
@@ -13,10 +17,12 @@ namespace FundooNotesApp
             // Add services to the container.
 
             builder.Services.AddControllers();
+            builder.Services.AddTransient<IUserBusiness, UserBusiness>();
+            builder.Services.AddScoped<IUserRepo, UserRepo>();
+
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
-            builder.Services.AddControllers();
             builder.Services.AddDbContext<FundooContext>(
                 x => x.UseSqlServer(builder.Configuration["connectionString:FundooDB"]));
 

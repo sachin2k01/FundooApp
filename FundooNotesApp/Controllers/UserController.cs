@@ -3,7 +3,10 @@ using BusinessLayer.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ModelLayer.Models;
+using RepositoryLayer.Context;
 using RepositoryLayer.Entity;
+using RepositoryLayer.Interfaces;
+using RepositoryLayer.Services;
 
 namespace FundooNotesApp.Controllers
 {
@@ -16,7 +19,7 @@ namespace FundooNotesApp.Controllers
         public UserController(IUserBusiness userBusiness)
         {
             this.userBusiness = userBusiness;
-            
+
         }
 
         [HttpPost]
@@ -24,9 +27,9 @@ namespace FundooNotesApp.Controllers
         public IActionResult Register(RegisterModel model)
         {
             var result = userBusiness.UserRegister(model);
-            if(result != null)
+            if (result != null)
             {
-                return Ok(new ResponseModel<UserEntity> { Success= true,Message="Register Successfull",Data=result } );
+                return Ok(new ResponseModel<UserEntity> { Success = true, Message = "Register Successfull", Data = result });
             }
             else
             {
@@ -34,5 +37,19 @@ namespace FundooNotesApp.Controllers
             }
 
         }
+        [HttpGet("{id}")]
+        public IActionResult GetUserById(int id)
+        {
+            UserEntity user = userBusiness.GetUserById(id);
+
+            if (user == null)
+            {
+                return NotFound(); // If user with given email is not found
+            }
+
+            return Ok(user); // Return user details if found
+        }
+
+
     }
 }
