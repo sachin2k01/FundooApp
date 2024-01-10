@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v6.0": {
       "FundooNotesApp/1.0.0": {
         "dependencies": {
+          "BusinessLayer": "1.0.0",
           "Microsoft.EntityFrameworkCore": "6.0.0",
           "Microsoft.EntityFrameworkCore.Design": "6.0.0",
           "Microsoft.EntityFrameworkCore.Relational": "6.0.0",
@@ -478,11 +479,33 @@
           }
         }
       },
-      "RepositoryLayer/1.0.0": {
+      "BusinessLayer/1.0.0": {
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "6.0.0",
+          "Microsoft.EntityFrameworkCore.Relational": "6.0.0",
+          "Microsoft.EntityFrameworkCore.SqlServer": "6.0.0",
+          "RepositoryLayer": "1.0.0"
+        },
+        "runtime": {
+          "BusinessLayer.dll": {}
+        }
+      },
+      "ModelLayer/1.0.0": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore": "6.0.0",
           "Microsoft.EntityFrameworkCore.Relational": "6.0.0",
           "Microsoft.EntityFrameworkCore.SqlServer": "6.0.0"
+        },
+        "runtime": {
+          "ModelLayer.dll": {}
+        }
+      },
+      "RepositoryLayer/1.0.0": {
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "6.0.0",
+          "Microsoft.EntityFrameworkCore.Relational": "6.0.0",
+          "Microsoft.EntityFrameworkCore.SqlServer": "6.0.0",
+          "ModelLayer": "1.0.0"
         },
         "runtime": {
           "RepositoryLayer.dll": {}
@@ -838,6 +861,16 @@
       "sha512": "sha512-CeWTdRNfRaSh0pm2gDTJFwVaXfTq6Xwv/sA887iwPTneW7oMtMlpvDIO+U60+3GWTB7Aom6oQwv5VZVUhQRdPQ==",
       "path": "system.windows.extensions/4.7.0",
       "hashPath": "system.windows.extensions.4.7.0.nupkg.sha512"
+    },
+    "BusinessLayer/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "ModelLayer/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     },
     "RepositoryLayer/1.0.0": {
       "type": "project",

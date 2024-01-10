@@ -779,6 +779,21 @@
             "rid": "win"
           }
         }
+      },
+      "ModelLayer/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "6.0.0",
+          "Microsoft.EntityFrameworkCore.Relational": "6.0.0",
+          "Microsoft.EntityFrameworkCore.SqlServer": "6.0.0"
+        },
+        "compile": {
+          "bin/placeholder/ModelLayer.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ModelLayer.dll": {}
+        }
       }
     }
   },
@@ -1998,6 +2013,11 @@
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
+    },
+    "ModelLayer/1.0.0": {
+      "type": "project",
+      "path": "../ModelLayer/ModelLayer.csproj",
+      "msbuildProject": "../ModelLayer/ModelLayer.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -2006,7 +2026,8 @@
       "Microsoft.EntityFrameworkCore.Design >= 6.0.0",
       "Microsoft.EntityFrameworkCore.Relational >= 6.0.0",
       "Microsoft.EntityFrameworkCore.SqlServer >= 6.0.0",
-      "Microsoft.EntityFrameworkCore.Tools >= 6.0.0"
+      "Microsoft.EntityFrameworkCore.Tools >= 6.0.0",
+      "ModelLayer >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -2040,7 +2061,11 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\Hp\\source\\repos\\FundooNotesApp\\ModelLayer\\ModelLayer.csproj": {
+              "projectPath": "C:\\Users\\Hp\\source\\repos\\FundooNotesApp\\ModelLayer\\ModelLayer.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
