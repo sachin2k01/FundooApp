@@ -7,7 +7,6 @@ namespace RepositoryLayer.Interfaces
     {
         UserEntity UserRegister(RegisterModel register);
 
-        //UserEntity UserLogin(LoginModel login);
-        UserEntity GetUserById(int id);
+        public string UserLogin(LoginModel login);
     }
 }

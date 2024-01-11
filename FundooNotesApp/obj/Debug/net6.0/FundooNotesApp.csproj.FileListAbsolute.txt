@@ -70,3 +70,4 @@ C:\Users\Hp\source\repos\FundooNotesApp\FundooNotesApp\bin\Debug\net6.0\ModelLay
 C:\Users\Hp\source\repos\FundooNotesApp\FundooNotesApp\bin\Debug\net6.0\BusinessLayer.pdb
 C:\Users\Hp\source\repos\FundooNotesApp\FundooNotesApp\bin\Debug\net6.0\ModelLayer.pdb
 C:\Users\Hp\source\repos\FundooNotesApp\FundooNotesApp\obj\Debug\net6.0\FundooNotesApp.sourcelink.json
+C:\Users\Hp\source\repos\FundooNotesApp\FundooNotesApp\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

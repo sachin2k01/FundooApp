@@ -23,7 +23,7 @@ namespace FundooNotesApp.Controllers
         }
 
         [HttpPost]
-        [Route("reg")]
+        [Route("register")]
         public IActionResult Register(RegisterModel model)
         {
             var result = userBusiness.UserRegister(model);
@@ -37,17 +37,21 @@ namespace FundooNotesApp.Controllers
             }
 
         }
-        [HttpGet("{id}")]
-        public IActionResult GetUserById(int id)
+
+        [HttpPost]
+        [Route("login")]
+        public IActionResult Login(LoginModel login) 
         {
-            UserEntity user = userBusiness.GetUserById(id);
-
-            if (user == null)
+            var logResult = userBusiness.UserLogin(login);
+            if(logResult != null)
             {
-                return NotFound(); // If user with given email is not found
+                return Ok(new ResponseModel<string> { Success=true,Message="Login Successfull",Data=logResult});
             }
-
-            return Ok(user); // Return user details if found
+            else
+            {
+                return BadRequest(new ResponseModel<string> { Success = false, Message = "Login Not Successfull" });
+            }
+            
         }
 
 

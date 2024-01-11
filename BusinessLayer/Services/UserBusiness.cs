@@ -26,9 +26,10 @@ namespace BusinessLayer.Services
             return userRepo.UserRegister(register);
         }
 
-        public UserEntity GetUserById(int id)
+
+        public string UserLogin(LoginModel login)
         {
-            return userRepo.GetUserById(id);
+            return userRepo.UserLogin(login);
         }
     }
 }

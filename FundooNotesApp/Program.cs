@@ -18,7 +18,7 @@ namespace FundooNotesApp
 
             builder.Services.AddControllers();
             builder.Services.AddTransient<IUserBusiness, UserBusiness>();
-            builder.Services.AddScoped<IUserRepo, UserRepo>();
+            builder.Services.AddTransient<IUserRepo, UserRepo>();
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
