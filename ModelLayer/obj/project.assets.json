@@ -1133,16 +1133,19 @@
           }
         }
       },
-      "RabbitMQ.Client/5.1.2": {
+      "RabbitMQ.Client/6.0.0": {
         "type": "package",
+        "dependencies": {
+          "System.Memory": "4.5.4"
+        },
         "compile": {
           "lib/netstandard2.0/RabbitMQ.Client.dll": {
-            "related": ".xml"
+            "related": ".pdb;.xml"
           }
         },
         "runtime": {
           "lib/netstandard2.0/RabbitMQ.Client.dll": {
-            "related": ".xml"
+            "related": ".pdb;.xml"
           }
         }
       },
@@ -1759,6 +1762,15 @@
         },
         "runtime": {
           "lib/netstandard1.6/System.Linq.Expressions.dll": {}
+        }
+      },
+      "System.Memory/4.5.4": {
+        "type": "package",
+        "compile": {
+          "ref/netcoreapp2.1/_._": {}
+        },
+        "runtime": {
+          "lib/netcoreapp2.1/_._": {}
         }
       },
       "System.Net.Http/4.3.0": {
@@ -3902,20 +3914,22 @@
         "newtonsoft.json.bson.nuspec"
       ]
     },
-    "RabbitMQ.Client/5.1.2": {
-      "sha512": "Xhj+un0pw4N7h37SZWptxl/NEv7f1RLHwZhXjqzkCm3w3IdbFJh+HjVyPaciD848BUYLGoEQzadx90nShsbs4Q==",
+    "RabbitMQ.Client/6.0.0": {
+      "sha512": "8e7KK44Fai72F452GF8KxUAW5t+ik3rUcalpQaxQNv6DxZyQTgVioWfyYSGYF6qpUqDdy7ZmvD3Zgkm7pKNR9w==",
       "type": "package",
-      "path": "rabbitmq.client/5.1.2",
+      "path": "rabbitmq.client/6.0.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "lib/net451/RabbitMQ.Client.dll",
-        "lib/net451/RabbitMQ.Client.xml",
-        "lib/netstandard1.5/RabbitMQ.Client.dll",
-        "lib/netstandard1.5/RabbitMQ.Client.xml",
+        "LICENSE",
+        "icon.png",
+        "lib/net461/RabbitMQ.Client.dll",
+        "lib/net461/RabbitMQ.Client.pdb",
+        "lib/net461/RabbitMQ.Client.xml",
         "lib/netstandard2.0/RabbitMQ.Client.dll",
+        "lib/netstandard2.0/RabbitMQ.Client.pdb",
         "lib/netstandard2.0/RabbitMQ.Client.xml",
-        "rabbitmq.client.5.1.2.nupkg.sha512",
+        "rabbitmq.client.6.0.0.nupkg.sha512",
         "rabbitmq.client.nuspec"
       ]
     },
@@ -5353,6 +5367,29 @@
         "runtimes/aot/lib/netcore50/System.Linq.Expressions.dll",
         "system.linq.expressions.4.3.0.nupkg.sha512",
         "system.linq.expressions.nuspec"
+      ]
+    },
+    "System.Memory/4.5.4": {
+      "sha512": "1MbJTHS1lZ4bS4FmsJjnuGJOu88ZzTT2rLvrhW7Ygic+pC0NWA+3hgAen0HRdsocuQXCkUTdFn9yHJJhsijDXw==",
+      "type": "package",
+      "path": "system.memory/4.5.4",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net461/System.Memory.dll",
+        "lib/net461/System.Memory.xml",
+        "lib/netcoreapp2.1/_._",
+        "lib/netstandard1.1/System.Memory.dll",
+        "lib/netstandard1.1/System.Memory.xml",
+        "lib/netstandard2.0/System.Memory.dll",
+        "lib/netstandard2.0/System.Memory.xml",
+        "ref/netcoreapp2.1/_._",
+        "system.memory.4.5.4.nupkg.sha512",
+        "system.memory.nuspec",
+        "useSharedDesignerContext.txt",
+        "version.txt"
       ]
     },
     "System.Net.Http/4.3.0": {
@@ -7786,7 +7823,8 @@
       "Microsoft.EntityFrameworkCore.Design >= 6.0.0",
       "Microsoft.EntityFrameworkCore.Relational >= 6.0.0",
       "Microsoft.EntityFrameworkCore.SqlServer >= 6.0.0",
-      "Microsoft.EntityFrameworkCore.Tools >= 6.0.0"
+      "Microsoft.EntityFrameworkCore.Tools >= 6.0.0",
+      "RabbitMQ.Client >= 6.0.0"
     ]
   },
   "packageFolders": {
@@ -7866,6 +7904,10 @@
           "Microsoft.EntityFrameworkCore.Tools": {
             "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
             "suppressParent": "All",
+            "target": "Package",
+            "version": "[6.0.0, )"
+          },
+          "RabbitMQ.Client": {
             "target": "Package",
             "version": "[6.0.0, )"
           }

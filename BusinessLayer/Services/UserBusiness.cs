@@ -32,9 +32,9 @@ namespace BusinessLayer.Services
         {
             return userRepo.UserLogin(login);
         }
-        public async Task<string> ForgotPassword(ForgotPasswordModel forgotPassword, IBus bus)
+        public async Task<string> ForgotPassword(string emailTo, IBus bus)
         {
-            return await userRepo.ForgotPassword(forgotPassword, bus);
+            return await userRepo.ForgotPassword(emailTo, bus);
         }
 
 

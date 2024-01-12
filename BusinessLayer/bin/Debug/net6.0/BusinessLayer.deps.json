@@ -16,6 +16,7 @@
           "Microsoft.EntityFrameworkCore.Relational": "6.0.0",
           "Microsoft.EntityFrameworkCore.SqlServer": "6.0.0",
           "Microsoft.EntityFrameworkCore.Tools": "6.0.0",
+          "RabbitMQ.Client": "6.0.0",
           "RepositoryLayer": "1.0.0"
         },
         "runtime": {
@@ -108,7 +109,7 @@
       "MassTransit.RabbitMQ/6.0.0": {
         "dependencies": {
           "MassTransit": "6.0.0",
-          "RabbitMQ.Client": "5.1.2"
+          "RabbitMQ.Client": "6.0.0"
         },
         "runtime": {
           "lib/netstandard2.0/MassTransit.RabbitMqTransport.dll": {
@@ -624,11 +625,14 @@
           }
         }
       },
-      "RabbitMQ.Client/5.1.2": {
+      "RabbitMQ.Client/6.0.0": {
+        "dependencies": {
+          "System.Memory": "4.5.4"
+        },
         "runtime": {
           "lib/netstandard2.0/RabbitMQ.Client.dll": {
-            "assemblyVersion": "5.0.0.0",
-            "fileVersion": "5.1.2.0"
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.0.0"
           }
         }
       },
@@ -923,6 +927,7 @@
           "System.Threading": "4.3.0"
         }
       },
+      "System.Memory/4.5.4": {},
       "System.Net.Http/4.3.0": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "3.1.0",
@@ -1370,7 +1375,8 @@
           "MassTransit.RabbitMQ": "6.0.0",
           "Microsoft.EntityFrameworkCore": "6.0.0",
           "Microsoft.EntityFrameworkCore.Relational": "6.0.0",
-          "Microsoft.EntityFrameworkCore.SqlServer": "6.0.0"
+          "Microsoft.EntityFrameworkCore.SqlServer": "6.0.0",
+          "RabbitMQ.Client": "6.0.0"
         },
         "runtime": {
           "ModelLayer.dll": {}
@@ -1385,7 +1391,8 @@
           "Microsoft.EntityFrameworkCore": "6.0.0",
           "Microsoft.EntityFrameworkCore.Relational": "6.0.0",
           "Microsoft.EntityFrameworkCore.SqlServer": "6.0.0",
-          "ModelLayer": "1.0.0"
+          "ModelLayer": "1.0.0",
+          "RabbitMQ.Client": "6.0.0"
         },
         "runtime": {
           "RepositoryLayer.dll": {}
@@ -1854,12 +1861,12 @@
       "path": "newtonsoft.json.bson/1.0.1",
       "hashPath": "newtonsoft.json.bson.1.0.1.nupkg.sha512"
     },
-    "RabbitMQ.Client/5.1.2": {
+    "RabbitMQ.Client/6.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-Xhj+un0pw4N7h37SZWptxl/NEv7f1RLHwZhXjqzkCm3w3IdbFJh+HjVyPaciD848BUYLGoEQzadx90nShsbs4Q==",
-      "path": "rabbitmq.client/5.1.2",
-      "hashPath": "rabbitmq.client.5.1.2.nupkg.sha512"
+      "sha512": "sha512-8e7KK44Fai72F452GF8KxUAW5t+ik3rUcalpQaxQNv6DxZyQTgVioWfyYSGYF6qpUqDdy7ZmvD3Zgkm7pKNR9w==",
+      "path": "rabbitmq.client/6.0.0",
+      "hashPath": "rabbitmq.client.6.0.0.nupkg.sha512"
     },
     "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
       "type": "package",
@@ -2140,6 +2147,13 @@
       "sha512": "sha512-PGKkrd2khG4CnlyJwxwwaWWiSiWFNBGlgXvJpeO0xCXrZ89ODrQ6tjEWS/kOqZ8GwEOUATtKtzp1eRgmYNfclg==",
       "path": "system.linq.expressions/4.3.0",
       "hashPath": "system.linq.expressions.4.3.0.nupkg.sha512"
+    },
+    "System.Memory/4.5.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-1MbJTHS1lZ4bS4FmsJjnuGJOu88ZzTT2rLvrhW7Ygic+pC0NWA+3hgAen0HRdsocuQXCkUTdFn9yHJJhsijDXw==",
+      "path": "system.memory/4.5.4",
+      "hashPath": "system.memory.4.5.4.nupkg.sha512"
     },
     "System.Net.Http/4.3.0": {
       "type": "package",

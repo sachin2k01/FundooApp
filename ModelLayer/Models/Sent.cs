@@ -5,21 +5,22 @@ using System.Net.Mail;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using MassTransit;
 
 namespace ModelLayer.Models
 {
     public class Sent
     {
-        public string SendMessage(ForgotPasswordModel forgot)
+        public string SendMessage(string emailTo)
         {
             try
             {
                 string frm_mail = "thenamesachin@gmail.com";
                 string frm_pass = "wxgr llne grof nxqb";
-                MailMessage message = new MailMessage();
-                message.From = new MailAddress(frm_mail,forgot.eMail);//forgot.eMail(Reciever Email)
-                message.Subject = forgot.Subject;
-                message.Body = forgot.Message;
+                MailMessage message = new MailMessage(frm_mail, emailTo);
+                //message.From = new MailAddress(frm_mail,emailTo);//forgot.eMail(Reciever Email)
+                message.Subject = "Forgot Password";
+                message.Body = "click here to reset your password";
                 message.BodyEncoding = Encoding.UTF8;
                 message.IsBodyHtml = false;
 
@@ -31,7 +32,7 @@ namespace ModelLayer.Models
                 smtpclient.Send(message);
                 
 
-                return "Password reset send to email"+forgot.eMail;
+                return "Password reset send to email"+emailTo;
 
             }
             catch(Exception e)

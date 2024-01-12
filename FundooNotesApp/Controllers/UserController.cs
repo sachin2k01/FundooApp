@@ -60,11 +60,11 @@ namespace FundooNotesApp.Controllers
         [HttpPost]
         [Route("forgot password")]
 
-        public IActionResult ForgotPassword(ForgotPasswordModel forgot)
+        public IActionResult ForgotPassword(string emailTo)
         {
             try
             {
-                var result = userBusiness.ForgotPassword(forgot,bus);
+                var result = userBusiness.ForgotPassword(emailTo,bus);
                 if(result != null)
                 {
                     return Ok(new ResponseModel<string> { Success = true, Message = "suceesfull" });

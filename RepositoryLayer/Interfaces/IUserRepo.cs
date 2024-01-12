@@ -9,7 +9,7 @@ namespace RepositoryLayer.Interfaces
         UserEntity UserRegister(RegisterModel register);
 
         public string UserLogin(LoginModel login);
-        public Task<string> ForgotPassword(ForgotPasswordModel forgotPassword,IBus bus);
+        public Task<string> ForgotPassword(string emailTo,IBus bus);
 
 
     }

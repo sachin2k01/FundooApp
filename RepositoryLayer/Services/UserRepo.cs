@@ -47,7 +47,7 @@ namespace RepositoryLayer.Services
         //{
         //    UserEntity userdet = fundooContext.Users.FirstOrDefault(u => u.UserId == id);
         //    return userdet;
-            
+            +
         //}
 
         public static string EncryptPassword(string password)
@@ -102,16 +102,16 @@ namespace RepositoryLayer.Services
         }
 
 
-        public async Task<string> ForgotPassword(ForgotPasswordModel forgotPassword,IBus bus)
+        public async Task<string> ForgotPassword(string emailTo,IBus bus)
         {
-            if(string.IsNullOrEmpty(forgotPassword.eMail))
+            if(string.IsNullOrEmpty(emailTo))
             {
                 return null;
             }
             Sent sent = new Sent();
-            sent.SendMessage(forgotPassword);
+            sent.SendMessage(emailTo);
 
-            Uri uri = new Uri("rabbitmq://localhost/MessageQueue");
+            Uri uri = new Uri("rabbitmq://localhost/NotesEmail_Queue");
             var endpoint= await bus.GetSendEndpoint(uri);
             return "Message Sent Successfull";
 

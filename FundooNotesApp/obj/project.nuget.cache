@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "l0Gq/+xzb1phuNgCn18rdKcz8XVEG9/W6pRu122RDSs79DKvm3PiXH97cRAGSY/Ue6GzyeRUGzM5zxkm2KfKEw==",
+  "dgSpecHash": "2XWo7DkTC1qx0RVN+CP7eJYbL3L4SK5wPcbzSXLeRkbY/LBiObiyxKZXFpEFciagajr66McxwI3RPbk0wZPwsA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Hp\\source\\repos\\FundooNotesApp\\FundooNotesApp\\FundooNotesApp.csproj",
   "expectedPackageFiles": [
@@ -71,7 +71,7 @@
     "C:\\Users\\Hp\\.nuget\\packages\\newid\\3.0.2\\newid.3.0.2.nupkg.sha512",
     "C:\\Users\\Hp\\.nuget\\packages\\newtonsoft.json\\11.0.2\\newtonsoft.json.11.0.2.nupkg.sha512",
     "C:\\Users\\Hp\\.nuget\\packages\\newtonsoft.json.bson\\1.0.1\\newtonsoft.json.bson.1.0.1.nupkg.sha512",
-    "C:\\Users\\Hp\\.nuget\\packages\\rabbitmq.client\\5.1.2\\rabbitmq.client.5.1.2.nupkg.sha512",
+    "C:\\Users\\Hp\\.nuget\\packages\\rabbitmq.client\\6.0.0\\rabbitmq.client.6.0.0.nupkg.sha512",
     "C:\\Users\\Hp\\.nuget\\packages\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Users\\Hp\\.nuget\\packages\\runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Users\\Hp\\.nuget\\packages\\runtime.fedora.24-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.fedora.24-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
@@ -116,6 +116,7 @@
     "C:\\Users\\Hp\\.nuget\\packages\\system.io.filesystem.primitives\\4.3.0\\system.io.filesystem.primitives.4.3.0.nupkg.sha512",
     "C:\\Users\\Hp\\.nuget\\packages\\system.linq\\4.3.0\\system.linq.4.3.0.nupkg.sha512",
     "C:\\Users\\Hp\\.nuget\\packages\\system.linq.expressions\\4.3.0\\system.linq.expressions.4.3.0.nupkg.sha512",
+    "C:\\Users\\Hp\\.nuget\\packages\\system.memory\\4.5.4\\system.memory.4.5.4.nupkg.sha512",
     "C:\\Users\\Hp\\.nuget\\packages\\system.net.http\\4.3.0\\system.net.http.4.3.0.nupkg.sha512",
     "C:\\Users\\Hp\\.nuget\\packages\\system.net.primitives\\4.3.0\\system.net.primitives.4.3.0.nupkg.sha512",
     "C:\\Users\\Hp\\.nuget\\packages\\system.net.sockets\\4.3.0\\system.net.sockets.4.3.0.nupkg.sha512",
