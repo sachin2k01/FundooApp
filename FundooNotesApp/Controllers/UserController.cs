@@ -1,5 +1,6 @@
 ﻿using BusinessLayer.Interface;
 using BusinessLayer.Services;
+using MassTransit;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ModelLayer.Models;
@@ -16,9 +17,12 @@ namespace FundooNotesApp.Controllers
     {
         private readonly IUserBusiness userBusiness;
 
-        public UserController(IUserBusiness userBusiness)
+        private readonly IBus bus;
+
+        public UserController(IUserBusiness userBusiness,IBus bus)
         {
             this.userBusiness = userBusiness;
+            this.bus = bus;
 
         }
 
@@ -52,6 +56,31 @@ namespace FundooNotesApp.Controllers
                 return BadRequest(new ResponseModel<string> { Success = false, Message = "Login Not Successfull" });
             }
             
+        }
+        [HttpPost]
+        [Route("forgot password")]
+
+        public IActionResult ForgotPassword(ForgotPasswordModel forgot)
+        {
+            try
+            {
+                var result = userBusiness.ForgotPassword(forgot,bus);
+                if(result != null)
+                {
+                    return Ok(new ResponseModel<string> { Success = true, Message = "suceesfull" });
+
+
+                }
+                else
+                {
+                    return BadRequest(new ResponseModel<string> { Success = false, Message = "not suceesfull" });
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
 

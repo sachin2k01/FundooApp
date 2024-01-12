@@ -1,4 +1,5 @@
 ﻿using BusinessLayer.Interface;
+using MassTransit;
 using ModelLayer.Models;
 using RepositoryLayer.Entity;
 using RepositoryLayer.Interfaces;
@@ -31,5 +32,11 @@ namespace BusinessLayer.Services
         {
             return userRepo.UserLogin(login);
         }
+        public async Task<string> ForgotPassword(ForgotPasswordModel forgotPassword, IBus bus)
+        {
+            return await userRepo.ForgotPassword(forgotPassword, bus);
+        }
+
+
     }
 }

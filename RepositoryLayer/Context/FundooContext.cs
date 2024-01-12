@@ -10,7 +10,7 @@ namespace RepositoryLayer.Context
 {
     public class FundooContext : DbContext
     {
-        public FundooContext(DbContextOptions options):base(options) { }
+        public FundooContext(DbContextOptions options) : base(options) { }
 
         public DbSet<UserEntity> Users { get; set; }
     }

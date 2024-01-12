@@ -1,5 +1,6 @@
 using BusinessLayer.Interface;
 using BusinessLayer.Services;
+using MassTransit;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using RepositoryLayer.Context;
@@ -23,8 +24,26 @@ namespace FundooNotesApp
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            //database connection
             builder.Services.AddDbContext<FundooContext>(
                 x => x.UseSqlServer(builder.Configuration["connectionString:FundooDB"]));
+
+            //rabbit mq registration code
+            builder.Services.AddMassTransit(x =>
+            {
+                x.AddBus(provider => Bus.Factory.CreateUsingRabbitMq(config =>
+                {
+                    config.Host(new Uri("rabbitmq://localhost/"), h =>
+                    {
+                        h.Username("guest");
+                        h.Password("guest");
+                    });
+
+                }));
+            });
+            //// Add MassTransit hosted service for health checks
+            //builder.Services.AddMassTransitHostedService();
+
 
 
             var app = builder.Build();

@@ -1,4 +1,5 @@
-﻿using ModelLayer.Models;
+﻿using MassTransit;
+using ModelLayer.Models;
 using RepositoryLayer.Entity;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,8 @@ namespace BusinessLayer.Interface
     {
         public UserEntity UserRegister(RegisterModel register);
         public string UserLogin(LoginModel login);
+        public Task<string> ForgotPassword(ForgotPasswordModel forgotPassword, IBus bus);
+
 
     }
 }

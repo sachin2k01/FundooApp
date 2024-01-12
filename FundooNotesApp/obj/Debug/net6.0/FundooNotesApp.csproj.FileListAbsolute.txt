@@ -71,3 +71,14 @@ C:\Users\Hp\source\repos\FundooNotesApp\FundooNotesApp\bin\Debug\net6.0\Business
 C:\Users\Hp\source\repos\FundooNotesApp\FundooNotesApp\bin\Debug\net6.0\ModelLayer.pdb
 C:\Users\Hp\source\repos\FundooNotesApp\FundooNotesApp\obj\Debug\net6.0\FundooNotesApp.sourcelink.json
 C:\Users\Hp\source\repos\FundooNotesApp\FundooNotesApp\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\Hp\source\repos\FundooNotesApp\FundooNotesApp\bin\Debug\net6.0\Automatonymous.dll
+C:\Users\Hp\source\repos\FundooNotesApp\FundooNotesApp\bin\Debug\net6.0\GreenPipes.dll
+C:\Users\Hp\source\repos\FundooNotesApp\FundooNotesApp\bin\Debug\net6.0\MassTransit.dll
+C:\Users\Hp\source\repos\FundooNotesApp\FundooNotesApp\bin\Debug\net6.0\MassTransit.AspNetCoreIntegration.dll
+C:\Users\Hp\source\repos\FundooNotesApp\FundooNotesApp\bin\Debug\net6.0\MassTransit.ExtensionsDependencyInjectionIntegration.dll
+C:\Users\Hp\source\repos\FundooNotesApp\FundooNotesApp\bin\Debug\net6.0\MassTransit.RabbitMqTransport.dll
+C:\Users\Hp\source\repos\FundooNotesApp\FundooNotesApp\bin\Debug\net6.0\Microsoft.Extensions.PlatformAbstractions.dll
+C:\Users\Hp\source\repos\FundooNotesApp\FundooNotesApp\bin\Debug\net6.0\NewId.dll
+C:\Users\Hp\source\repos\FundooNotesApp\FundooNotesApp\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\Hp\source\repos\FundooNotesApp\FundooNotesApp\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
+C:\Users\Hp\source\repos\FundooNotesApp\FundooNotesApp\bin\Debug\net6.0\RabbitMQ.Client.dll

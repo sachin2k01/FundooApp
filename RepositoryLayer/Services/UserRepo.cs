@@ -1,5 +1,7 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using MassTransit;
+using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.VisualBasic;
 using ModelLayer.Models;
 using RepositoryLayer.Context;
 using RepositoryLayer.Entity;
@@ -9,6 +11,9 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Net.Mail;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
@@ -78,6 +83,7 @@ namespace RepositoryLayer.Services
 
         public string GenerateToken(string email,int userId)
         {
+
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Jwt:Key"]));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
             var claims = new[]
@@ -94,6 +100,25 @@ namespace RepositoryLayer.Services
 
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
+
+
+        public async Task<string> ForgotPassword(ForgotPasswordModel forgotPassword,IBus bus)
+        {
+            if(string.IsNullOrEmpty(forgotPassword.eMail))
+            {
+                return null;
+            }
+            Sent sent = new Sent();
+            sent.SendMessage(forgotPassword);
+
+            Uri uri = new Uri("rabbitmq://localhost/MessageQueue");
+            var endpoint= await bus.GetSendEndpoint(uri);
+            return "Message Sent Successfull";
+
+            
+        }
+
+      
 
     }
 }
