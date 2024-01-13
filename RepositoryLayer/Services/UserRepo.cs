@@ -47,7 +47,7 @@ namespace RepositoryLayer.Services
         //{
         //    UserEntity userdet = fundooContext.Users.FirstOrDefault(u => u.UserId == id);
         //    return userdet;
-            +
+           
         //}
 
         public static string EncryptPassword(string password)
@@ -104,21 +104,43 @@ namespace RepositoryLayer.Services
 
         public async Task<string> ForgotPassword(string emailTo,IBus bus)
         {
-            if(string.IsNullOrEmpty(emailTo))
+            try
             {
-                return null;
+                if (string.IsNullOrEmpty(emailTo))
+                {
+                    return null;
+                }
+                Sent sent = new Sent();
+                sent.SendMessage(emailTo);
+
+                Uri uri = new Uri("rabbitmq://localhost/NotesEmail_Queue");
+                var endpoint = await bus.GetSendEndpoint(uri);
+                return "Message Sent Successfull";
             }
-            Sent sent = new Sent();
-            sent.SendMessage(emailTo);
+            catch (Exception e)
+            {
 
-            Uri uri = new Uri("rabbitmq://localhost/NotesEmail_Queue");
-            var endpoint= await bus.GetSendEndpoint(uri);
-            return "Message Sent Successfull";
-
-            
+                return e.Message;
+            }
+           
         }
 
-      
+        public ProductEntity AddProduct(ProductModel product)
+        {
+            ProductEntity prod = new ProductEntity();
+            prod.ProductName = product.ProductName;
+            prod.Brand=product.Brand;
+            prod.Quantity = product.Quantity;
+            fundooContext.Product.Add(prod);
+            fundooContext.SaveChanges();
+            return prod;
+        }    
 
+
+        public UserEntity GetUsersById(int id)
+        {
+            UserEntity user = fundooContext.Users.FirstOrDefault(x => x.UserId == id);
+            return user;
+        }
     }
 }

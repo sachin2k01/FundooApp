@@ -15,6 +15,10 @@ namespace BusinessLayer.Interface
         public string UserLogin(LoginModel login);
         public Task<string> ForgotPassword(string emailTo, IBus bus);
 
+        public ProductEntity AddProduct(ProductModel product);
+
+        public UserEntity GetUsersById(int id);
+
 
     }
 }

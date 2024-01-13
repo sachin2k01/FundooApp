@@ -83,6 +83,34 @@ namespace FundooNotesApp.Controllers
             }
         }
 
+        [HttpPost("Products")]
+
+        public IActionResult AddProduct(ProductModel product)
+        {
+            var result = userBusiness.AddProduct(product);
+            if(result!=null)
+            {
+                return Ok(new ResponseModel<ProductEntity> { Success = true, Message = "Successfully add the products to table", Data = result });
+            }
+            else
+            {
+                return BadRequest(new ResponseModel<ProductEntity> { Success = false, Message = "Can't able to add products"});
+            }
+        }
+
+        [HttpGet("Byid")]
+        public IActionResult GetUserDetail(int id)
+        {
+            UserEntity userDetais=userBusiness.GetUsersById(id);
+            if(userDetais!=null)
+            {
+                return Ok(new ResponseModel<UserEntity> { Success = true, Message = "Successfully Fetch User Details", Data = userDetais });
+            }
+            else
+            {
+                return BadRequest(new ResponseModel<UserEntity> { Success = false, Message = "Not Successfully" });
+            }
+        }
 
     }
 }

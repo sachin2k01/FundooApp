@@ -37,6 +37,14 @@ namespace BusinessLayer.Services
             return await userRepo.ForgotPassword(emailTo, bus);
         }
 
+        public ProductEntity AddProduct(ProductModel product)
+        {
+            return userRepo.AddProduct(product);
+        }
 
+        public UserEntity GetUsersById(int id)
+        {
+            return userRepo.GetUsersById(id);
+        }
     }
 }
