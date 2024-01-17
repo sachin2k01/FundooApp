@@ -17,6 +17,7 @@ using System.Net.Mail;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace RepositoryLayer.Services
 {
@@ -66,19 +67,40 @@ namespace RepositoryLayer.Services
             }
         }
 
+        public static string DecryptPassword(string encryptedPassword)
+        {
+            try
+            {
+                byte[] decrypt_password = Convert.FromBase64String(encryptedPassword);
+                string originalPassword = Encoding.UTF8.GetString(decrypt_password);
+                return originalPassword;
+            }
+            catch (Exception ex)
+            {
+                return $"Decryption Failed.! {ex.Message}";
+            }
+        }
+
+
         public string UserLogin(LoginModel login)
         {
-            var checkUser=fundooContext.Users.FirstOrDefault(x=>x.Email == login.Email && x.Password==login.Password);
-            if(checkUser!=null)
+            // Fetch user by email from the database
+            var userFromDb = fundooContext.Users.FirstOrDefault(x => x.Email == login.Email);
+
+            // Check if user exists and password matches after decryption
+            if (userFromDb != null && DecryptPassword(userFromDb.Password) == login.Password)
             {
-                var token = GenerateToken(checkUser.Email, checkUser.UserId);
+                // Authentication successful, generate token
+                var token = GenerateToken(userFromDb.Email, userFromDb.UserId);
                 return token;
             }
             else
             {
+                // User not found or password doesn't match
                 return null;
             }
         }
+
 
 
         public string GenerateToken(string email,int userId)
@@ -110,12 +132,27 @@ namespace RepositoryLayer.Services
                 {
                     return null;
                 }
-                Sent sent = new Sent();
-                sent.SendMessage(emailTo);
+                else
+                {
+                    var result=fundooContext.Users.FirstOrDefault(x => x.Email == emailTo);
+                    if (result==null)
+                    {
+                        return null;
+                    }
+                    else
+                    {
+                        var tkn = GenerateToken(emailTo, result.UserId);
+                        Sent sent = new Sent();
+                        sent.SendMessage(emailTo,tkn);
 
-                Uri uri = new Uri("rabbitmq://localhost/NotesEmail_Queue");
-                var endpoint = await bus.GetSendEndpoint(uri);
-                return "Message Sent Successfull";
+                        Uri uri = new Uri("rabbitmq://localhost/NotesEmail_Queue");
+                        var endpoint = await bus.GetSendEndpoint(uri);
+                        return "Message Sent Successfull";
+
+                    }
+                   
+                }
+                
             }
             catch (Exception e)
             {

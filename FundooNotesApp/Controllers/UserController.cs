@@ -1,6 +1,7 @@
 ﻿using BusinessLayer.Interface;
 using BusinessLayer.Services;
 using MassTransit;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ModelLayer.Models;
@@ -57,6 +58,7 @@ namespace FundooNotesApp.Controllers
             }
             
         }
+
         [HttpPost]
         [Route("forgot password")]
 
@@ -101,14 +103,22 @@ namespace FundooNotesApp.Controllers
         [HttpGet("Byid")]
         public IActionResult GetUserDetail(int id)
         {
-            UserEntity userDetais=userBusiness.GetUsersById(id);
-            if(userDetais!=null)
+            try
             {
-                return Ok(new ResponseModel<UserEntity> { Success = true, Message = "Successfully Fetch User Details", Data = userDetais });
+                UserEntity userDetais = userBusiness.GetUsersById(id);
+                if (userDetais != null)
+                {
+                    return Ok(new ResponseModel<UserEntity> { Success = true, Message = "Successfully Fetch User Details", Data = userDetais });
+                }
+                else
+                {
+                    return BadRequest(new ResponseModel<UserEntity> { Success = false, Message = "Not Successfully" });
+                }
             }
-            else
+            catch (Exception ex)
             {
-                return BadRequest(new ResponseModel<UserEntity> { Success = false, Message = "Not Successfully" });
+
+                return BadRequest(ex.Message);
             }
         }
 

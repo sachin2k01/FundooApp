@@ -10,7 +10,7 @@ namespace RepositoryLayer.Interfaces
 {
     public interface IUserNotesRepo
     {
-        public UserNotesEntity CreateUserNotes(UserNotesModel notes);
+        public UserNotesEntity CreateUserNotes(UserNotesModel notes, int userId);
 
     }
 }

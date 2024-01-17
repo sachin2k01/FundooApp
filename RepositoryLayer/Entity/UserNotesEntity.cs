@@ -13,7 +13,6 @@ namespace RepositoryLayer.Entity
     public class UserNotesEntity
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int NoteId {  get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
@@ -23,5 +22,10 @@ namespace RepositoryLayer.Entity
         public bool IsArchive {get; set; }
         public bool IsPinned {get; set; }
         public bool IsTrash { get; set; }
+
+        [ForeignKey("Users")]
+        public int UserId { get; set; }
+
+        public UserEntity Users { get; set; }
     }
 }

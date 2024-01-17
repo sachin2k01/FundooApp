@@ -10,6 +10,6 @@ namespace BusinessLayer.Interface
 {
     public interface IUserBusinessNotes
     {
-        public UserNotesEntity CreateUserNotes(UserNotesModel notes);
+        public UserNotesEntity CreateUserNotes(UserNotesModel notes,int userId);
     }
 }

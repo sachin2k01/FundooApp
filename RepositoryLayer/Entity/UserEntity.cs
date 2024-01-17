@@ -14,6 +14,7 @@ namespace RepositoryLayer.Entity
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int UserId {  get; set; }
 
+        [Required]
         public string FirstName {  get; set; }
 
         public string LastName { get; set; }
@@ -21,6 +22,8 @@ namespace RepositoryLayer.Entity
         public string Email { get; set; }
         
         public string Password { get; set; }
+
+        public virtual ICollection<UserNotesEntity> UserNotes { get; set; }
 
     }
 }

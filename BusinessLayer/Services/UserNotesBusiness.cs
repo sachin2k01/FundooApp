@@ -21,9 +21,9 @@ namespace BusinessLayer.Services
             this._notesrepo = notesrepo;
             
         }
-        public UserNotesEntity CreateUserNotes(UserNotesModel notes)
+        public UserNotesEntity CreateUserNotes(UserNotesModel notes, int userId)
         {
-            return _notesrepo.CreateUserNotes(notes);
+            return _notesrepo.CreateUserNotes(notes,userId);
         }
 
     }

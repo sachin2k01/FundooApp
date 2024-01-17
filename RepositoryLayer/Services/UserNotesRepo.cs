@@ -19,20 +19,39 @@ namespace RepositoryLayer.Services
             
         }
 
-        public UserNotesEntity CreateUserNotes(UserNotesModel notes)
+        public UserNotesEntity CreateUserNotes(UserNotesModel notes, int userId)
         {
-            UserNotesEntity notesEntity = new UserNotesEntity();
-            notesEntity.Title = notes.Title;
-            notesEntity.Description = notes.Description;
-            notesEntity.Color = notes.Color;
-            notesEntity.ImagePaths = notes.ImagePaths;
-            notesEntity.Remainder = notes.Remainder;
-            notesEntity.IsArchive = notes.IsArchive;
-            notesEntity.IsPinned = notes.IsPinned;
-            notesEntity.IsTrash= notes.IsTrash;
-            _fundooContext.UserNotes.Add(notesEntity);
-            _fundooContext.SaveChanges();
-            return notesEntity;
+            if(userId!=0)
+            {
+                UserEntity user=_fundooContext.Users.FirstOrDefault(u=>u.UserId==userId);
+                if(user!=null)
+                {
+                    UserNotesEntity notesEntity = new UserNotesEntity();
+                    notesEntity.Title = notes.Title;
+                    notesEntity.Description = notes.Description;
+                    notesEntity.Color = notes.Color;
+                    notesEntity.ImagePaths = notes.ImagePaths;
+                    notesEntity.Remainder = notes.Remainder;
+                    notesEntity.IsArchive = notes.IsArchive;
+                    notesEntity.IsPinned = notes.IsPinned;
+                    notesEntity.IsTrash = notes.IsTrash;
+                    notesEntity.UserId = userId;
+                    _fundooContext.UserNotes.Add(notesEntity);
+                    _fundooContext.SaveChanges();
+                    return notesEntity;
+                }
+                else
+                {
+                    return null;
+                }
+                
+
+            }
+            else
+            {
+                return null;
+            }
+            
 
         }
 

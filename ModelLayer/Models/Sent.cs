@@ -11,16 +11,20 @@ namespace ModelLayer.Models
 {
     public class Sent
     {
-        public string SendMessage(string emailTo)
+ 
+        public string SendMessage(string emailTo,string token)
         {
             try
             {
                 string frm_mail = "thenamesachin@gmail.com";
                 string frm_pass = "wxgr llne grof nxqb";
                 MailMessage message = new MailMessage(frm_mail, emailTo);
+
+
                 //message.From = new MailAddress(frm_mail,emailTo);//forgot.eMail(Reciever Email)
                 message.Subject = "Forgot Password";
-                message.Body = "click here to reset your password";
+                 string msgBody= "click here to reset your password "+token;
+                message.Body=msgBody;
                 message.BodyEncoding = Encoding.UTF8;
                 message.IsBodyHtml = false;
 
