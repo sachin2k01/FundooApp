@@ -87,6 +87,10 @@
             "RabbitMQ.Client": {
               "target": "Package",
               "version": "[6.0.0, )"
+            },
+            "ShareFile.Api.Client": {
+              "target": "Package",
+              "version": "[4.0.200, )"
             }
           },
           "imports": [
@@ -196,6 +200,10 @@
               "target": "Package",
               "version": "[6.0.0, )"
             },
+            "ShareFile.Api.Client": {
+              "target": "Package",
+              "version": "[4.0.200, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.5.0, )"
@@ -303,6 +311,10 @@
             "RabbitMQ.Client": {
               "target": "Package",
               "version": "[6.0.0, )"
+            },
+            "ShareFile.Api.Client": {
+              "target": "Package",
+              "version": "[4.0.200, )"
             }
           },
           "imports": [
@@ -412,6 +424,10 @@
             "RabbitMQ.Client": {
               "target": "Package",
               "version": "[6.0.0, )"
+            },
+            "ShareFile.Api.Client": {
+              "target": "Package",
+              "version": "[4.0.200, )"
             }
           },
           "imports": [

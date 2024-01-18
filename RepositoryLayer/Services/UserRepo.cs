@@ -87,23 +87,19 @@ namespace RepositoryLayer.Services
             // Fetch user by email from the database
             var userFromDb = fundooContext.Users.FirstOrDefault(x => x.Email == login.Email);
 
-            // Check if user exists and password matches after decryption
             if (userFromDb != null && DecryptPassword(userFromDb.Password) == login.Password)
             {
-                // Authentication successful, generate token
                 var token = GenerateToken(userFromDb.Email, userFromDb.UserId);
                 return token;
             }
             else
             {
-                // User not found or password doesn't match
                 return null;
             }
         }
 
 
-
-        public string GenerateToken(string email,int userId)
+        public string GenerateToken(string email, int userId)
         {
 
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Jwt:Key"]));
@@ -118,8 +114,6 @@ namespace RepositoryLayer.Services
                 claims,
                 expires: DateTime.Now.AddHours(5),
                 signingCredentials: credentials);
-
-
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
 

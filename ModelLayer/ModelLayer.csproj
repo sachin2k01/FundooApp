@@ -22,6 +22,11 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="RabbitMQ.Client" Version="6.0.0" />
+    <PackageReference Include="ShareFile.Api.Client" Version="4.0.200" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Uploads\NoteImages\" />
   </ItemGroup>
 
 </Project>

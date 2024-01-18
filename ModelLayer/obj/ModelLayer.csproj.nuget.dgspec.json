@@ -83,6 +83,10 @@
             "RabbitMQ.Client": {
               "target": "Package",
               "version": "[6.0.0, )"
+            },
+            "ShareFile.Api.Client": {
+              "target": "Package",
+              "version": "[4.0.200, )"
             }
           },
           "imports": [

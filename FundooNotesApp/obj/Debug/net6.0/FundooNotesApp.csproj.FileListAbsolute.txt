@@ -82,3 +82,4 @@ C:\Users\Hp\source\repos\FundooNotesApp\FundooNotesApp\bin\Debug\net6.0\NewId.dl
 C:\Users\Hp\source\repos\FundooNotesApp\FundooNotesApp\bin\Debug\net6.0\Newtonsoft.Json.dll
 C:\Users\Hp\source\repos\FundooNotesApp\FundooNotesApp\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
 C:\Users\Hp\source\repos\FundooNotesApp\FundooNotesApp\bin\Debug\net6.0\RabbitMQ.Client.dll
+C:\Users\Hp\source\repos\FundooNotesApp\FundooNotesApp\bin\Debug\net6.0\ShareFile.Api.Client.dll

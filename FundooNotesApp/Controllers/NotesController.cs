@@ -20,11 +20,10 @@ namespace FundooNotesApp.Controllers
             
         }
 
-        [Authorize]
         [HttpPost]
         [Route("Notes")]
-
-        public IActionResult UserNoteCreation(UserNotesModel userNotes)
+        [Authorize]
+        public IActionResult UserNoteCreation([FromForm]UserNotesModel userNotes)
         {
             try
             {

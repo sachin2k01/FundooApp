@@ -22,6 +22,32 @@ namespace RepositoryLayer.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("RepositoryLayer.Entity.ImageEntity", b =>
+                {
+                    b.Property<int>("ImageId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ImageId"), 1L, 1);
+
+                    b.Property<string>("ImageName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("NoteId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ImageId");
+
+                    b.HasIndex("NoteId");
+
+                    b.ToTable("NoteImage");
+                });
+
             modelBuilder.Entity("RepositoryLayer.Entity.ProductEntity", b =>
                 {
                     b.Property<int>("ProductId")
@@ -87,11 +113,10 @@ namespace RepositoryLayer.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
 
-                    b.Property<string>("ImagePaths")
+                    b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -103,6 +128,9 @@ namespace RepositoryLayer.Migrations
 
                     b.Property<bool>("IsTrash")
                         .HasColumnType("bit");
+
+                    b.Property<DateTime>("ModifiedAt")
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("Remainder")
                         .HasColumnType("datetime2");
@@ -121,20 +149,26 @@ namespace RepositoryLayer.Migrations
                     b.ToTable("UserNotes");
                 });
 
+            modelBuilder.Entity("RepositoryLayer.Entity.ImageEntity", b =>
+                {
+                    b.HasOne("RepositoryLayer.Entity.UserNotesEntity", "UserNotes")
+                        .WithMany()
+                        .HasForeignKey("NoteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("UserNotes");
+                });
+
             modelBuilder.Entity("RepositoryLayer.Entity.UserNotesEntity", b =>
                 {
                     b.HasOne("RepositoryLayer.Entity.UserEntity", "Users")
-                        .WithMany("UserNotes")
+                        .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Users");
-                });
-
-            modelBuilder.Entity("RepositoryLayer.Entity.UserEntity", b =>
-                {
-                    b.Navigation("UserNotes");
                 });
 #pragma warning restore 612, 618
         }

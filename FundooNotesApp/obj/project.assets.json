@@ -1363,6 +1363,24 @@
           }
         }
       },
+      "ShareFile.Api.Client/4.0.200": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "1.6.1",
+          "Newtonsoft.Json": "10.0.3",
+          "System.Buffers": "4.4.0"
+        },
+        "compile": {
+          "lib/netstandard1.3/ShareFile.Api.Client.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard1.3/ShareFile.Api.Client.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Swashbuckle.AspNetCore/6.5.0": {
         "type": "package",
         "dependencies": {
@@ -2777,7 +2795,8 @@
           "Microsoft.EntityFrameworkCore.Relational": "6.0.0",
           "Microsoft.EntityFrameworkCore.SqlServer": "6.0.0",
           "RabbitMQ.Client": "6.0.0",
-          "RepositoryLayer": "1.0.0"
+          "RepositoryLayer": "1.0.0",
+          "ShareFile.Api.Client": "4.0.200"
         },
         "compile": {
           "bin/placeholder/BusinessLayer.dll": {}
@@ -2796,7 +2815,8 @@
           "Microsoft.EntityFrameworkCore": "6.0.0",
           "Microsoft.EntityFrameworkCore.Relational": "6.0.0",
           "Microsoft.EntityFrameworkCore.SqlServer": "6.0.0",
-          "RabbitMQ.Client": "6.0.0"
+          "RabbitMQ.Client": "6.0.0",
+          "ShareFile.Api.Client": "4.0.200"
         },
         "compile": {
           "bin/placeholder/ModelLayer.dll": {}
@@ -2817,7 +2837,8 @@
           "Microsoft.EntityFrameworkCore.Relational": "6.0.0",
           "Microsoft.EntityFrameworkCore.SqlServer": "6.0.0",
           "ModelLayer": "1.0.0",
-          "RabbitMQ.Client": "6.0.0"
+          "RabbitMQ.Client": "6.0.0",
+          "ShareFile.Api.Client": "4.0.200"
         },
         "compile": {
           "bin/placeholder/RepositoryLayer.dll": {}
@@ -4594,6 +4615,25 @@
         "runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
         "runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.nuspec",
         "runtimes/ubuntu.16.10-x64/native/System.Security.Cryptography.Native.OpenSsl.so"
+      ]
+    },
+    "ShareFile.Api.Client/4.0.200": {
+      "sha512": "hb0zzb/AER9o/gpYemCZPTSPd2kUau8wFkTAdXTX0xILYnK0GdeNj3cGTTkWQ6kPJvAlxMYyuFTkmxk3Cak/fA==",
+      "type": "package",
+      "path": "sharefile.api.client/4.0.200",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net45/ShareFile.Api.Client.dll",
+        "lib/net45/ShareFile.Api.Client.xml",
+        "lib/net462/ShareFile.Api.Client.dll",
+        "lib/net462/ShareFile.Api.Client.xml",
+        "lib/netstandard1.3/ShareFile.Api.Client.dll",
+        "lib/netstandard1.3/ShareFile.Api.Client.xml",
+        "lib/portable-net45+win8+wpa81/ShareFile.Api.Client.dll",
+        "lib/portable-net45+win8+wpa81/ShareFile.Api.Client.xml",
+        "sharefile.api.client.4.0.200.nupkg.sha512",
+        "sharefile.api.client.nuspec"
       ]
     },
     "Swashbuckle.AspNetCore/6.5.0": {
@@ -8373,6 +8413,7 @@
       "Microsoft.EntityFrameworkCore.Tools >= 6.0.0",
       "RabbitMQ.Client >= 6.0.0",
       "RepositoryLayer >= 1.0.0",
+      "ShareFile.Api.Client >= 4.0.200",
       "Swashbuckle.AspNetCore >= 6.5.0"
     ]
   },
@@ -8466,6 +8507,10 @@
           "RabbitMQ.Client": {
             "target": "Package",
             "version": "[6.0.0, )"
+          },
+          "ShareFile.Api.Client": {
+            "target": "Package",
+            "version": "[4.0.200, )"
           },
           "Swashbuckle.AspNetCore": {
             "target": "Package",

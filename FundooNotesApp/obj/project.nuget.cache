@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "2XWo7DkTC1qx0RVN+CP7eJYbL3L4SK5wPcbzSXLeRkbY/LBiObiyxKZXFpEFciagajr66McxwI3RPbk0wZPwsA==",
+  "dgSpecHash": "oEZ1VL2peYeTG/9p7krE1G3Zd1jx81EBPXj4vjq0jP7Hpwi5Rs/XtuHJaBB3H909QtMhez7HBTHxBr7GRdF9wA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Hp\\source\\repos\\FundooNotesApp\\FundooNotesApp\\FundooNotesApp.csproj",
   "expectedPackageFiles": [
@@ -88,6 +88,7 @@
     "C:\\Users\\Hp\\.nuget\\packages\\runtime.ubuntu.14.04-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.ubuntu.14.04-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Users\\Hp\\.nuget\\packages\\runtime.ubuntu.16.04-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.ubuntu.16.04-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Users\\Hp\\.nuget\\packages\\runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
+    "C:\\Users\\Hp\\.nuget\\packages\\sharefile.api.client\\4.0.200\\sharefile.api.client.4.0.200.nupkg.sha512",
     "C:\\Users\\Hp\\.nuget\\packages\\swashbuckle.aspnetcore\\6.5.0\\swashbuckle.aspnetcore.6.5.0.nupkg.sha512",
     "C:\\Users\\Hp\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.5.0\\swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
     "C:\\Users\\Hp\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.5.0\\swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",
