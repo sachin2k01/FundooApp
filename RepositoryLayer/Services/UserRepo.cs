@@ -181,7 +181,7 @@ namespace RepositoryLayer.Services
                 existingUser.FirstName = updateproperties.FirstName ?? existingUser.FirstName;
                 existingUser.LastName= updateproperties.LastName ?? existingUser.LastName;
                 existingUser.Email= updateproperties.Email ?? existingUser.Email;
-                existingUser.Password= updateproperties.Password ?? existingUser.Password;
+                existingUser.Password= EncryptPassword(updateproperties.Password) ?? existingUser.Password;
                 fundooContext.SaveChanges();
                 return existingUser;
             }

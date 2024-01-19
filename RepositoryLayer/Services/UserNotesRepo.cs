@@ -128,6 +128,38 @@ namespace RepositoryLayer.Services
             }
         }
 
+        public UserNotesEntity GetNotesById(int noteId, int userId)
+        {
+           UserNotesEntity noteinfo= _fundooContext.UserNotes.FirstOrDefault(x=>x.NoteId==noteId&&x.UserId==userId);
+            return noteinfo;
+        }
+
+        public List<UserNotesEntity> GetAllNodes()
+        {
+            var nodes = new List<UserNotesEntity>();
+            nodes=_fundooContext.UserNotes.ToList();
+            return nodes;
+        }
+
+        public List<UserNotesEntity> GetUserNotesById(int userId)
+        {
+            try
+            {
+                var nodes = new List<UserNotesEntity>();
+                nodes = _fundooContext.UserNotes.Where(x => x.UserId == userId).ToList();
+                return nodes;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+
+        
+
+
 
     }
 }

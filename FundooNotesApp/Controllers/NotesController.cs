@@ -45,5 +45,56 @@ namespace FundooNotesApp.Controllers
                 return BadRequest(e.Message); 
             }
         }
+
+        [Authorize]
+        [HttpGet]
+        [Route("NoteById")]
+        public IActionResult GetNoteById(int id)
+        {
+            int userId = int.Parse(User.Claims.Where(x => x.Type == "UserId").FirstOrDefault().Value);
+            var noteInfo=_userNotes.GetNotesById(id,userId);
+            if(noteInfo != null)
+            {
+                return Ok(noteInfo);
+            }
+            else
+            {
+                return BadRequest("Note Not Found");
+            }
+
+        }
+
+        [HttpGet("GetAllNodes")]
+        public IActionResult GetAllNodes()
+        {
+            var notesInfo= _userNotes.GetAllNodes();
+            if(notesInfo != null)
+            {
+                return Ok(notesInfo);
+            }
+            else
+            {
+                return BadRequest();
+            }
+
+        }
+
+        [Authorize]
+        [HttpGet]
+        [Route("UserNotes")]
+        public IActionResult GetUserNotes()
+        {
+            int userId = int.Parse(User.Claims.Where(x => x.Type == "UserId").FirstOrDefault().Value);
+            if(userId!=0)
+            {
+                var userNote=_userNotes.GetUserNotesById(userId);
+                return Ok(userNote);
+            }
+            else
+            {
+                return BadRequest();
+            }
+
+        }
     }
 }

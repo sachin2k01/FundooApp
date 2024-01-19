@@ -26,6 +26,19 @@ namespace BusinessLayer.Services
         {
             return _notesrepo.CreateUserNotes(notes,userId);
         }
+        public UserNotesEntity GetNotesById(int noteId, int userId)
+        {
+            return _notesrepo.GetNotesById(noteId,userId);
+        }
+        public List<UserNotesEntity> GetAllNodes()
+        {
+            return _notesrepo.GetAllNodes();
+        }
+
+        public List<UserNotesEntity> GetUserNotesById(int userId)
+        {
+            return _notesrepo.GetUserNotesById(userId);
+        }
 
     }
 }

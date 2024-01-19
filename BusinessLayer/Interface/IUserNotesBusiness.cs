@@ -12,5 +12,8 @@ namespace BusinessLayer.Interface
     public interface IUserBusinessNotes
     {
         public UserNotesEntity CreateUserNotes(UserNotesModel notes,int userId);
+        public UserNotesEntity GetNotesById(int noteId,int userId);
+        public List<UserNotesEntity> GetAllNodes();
+        public List<UserNotesEntity> GetUserNotesById(int userId);
     }
 }
