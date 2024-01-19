@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.Extensions.Logging;
 using ModelLayer.Models;
@@ -156,10 +157,39 @@ namespace RepositoryLayer.Services
             }
         }
 
+        public UserNotesEntity UpdateNotes(int  userId, int noteId, NotesUpdateModel notesModel)
+        {
+            var userNotes = _fundooContext.UserNotes.FirstOrDefault(x => x.NoteId == noteId && x.UserId == userId);
+            if(userNotes != null)
+            {
+                userNotes.Title=notesModel.Title ?? userNotes.Title;
+                userNotes.Description=notesModel.Description ?? userNotes.Description;
+                userNotes.Color=notesModel.Color ?? userNotes.Color;
+                userNotes.ModifiedAt=DateTime.Now;
+                _fundooContext.SaveChanges();
 
-        
+                return userNotes;
+            }
+            else
+            {
+                return null;
+            }
+        }
 
+        public string DeleteNode(int id,int userId)
+        {
+            var delNode=_fundooContext.UserNotes.FirstOrDefault(x=>x.NoteId==id && x.UserId==userId);
+            if(delNode != null)
+            {
+                _fundooContext.UserNotes.Remove(delNode);
+                _fundooContext.SaveChanges();
+                return "Node Deleted Successfully";
+            }
+            else
+            {
+                return "Invalid Node";
+            }
 
-
+        }
     }
 }

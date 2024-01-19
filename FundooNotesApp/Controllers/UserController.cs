@@ -73,7 +73,6 @@ namespace FundooNotesApp.Controllers
                 {
                     return Ok(new ResponseModel<string> { Success = true, Message = "suceesfull" });
 
-
                 }
                 else
                 {

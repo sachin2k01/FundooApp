@@ -96,5 +96,57 @@ namespace FundooNotesApp.Controllers
             }
 
         }
+
+        [Authorize]
+        [HttpPut]
+        [Route("UpdateNote")]
+        public IActionResult UpdateUsersNote(int noteId, NotesUpdateModel noteModel)
+        {
+            int userId = int.Parse(User.Claims.Where(x => x.Type == "UserId").FirstOrDefault().Value);
+            if(userId!=0)
+            {
+                var updateNote=_userNotes.UpdateNotes(noteId, userId,noteModel);
+                if(updateNote!=null)
+                {
+                    return Ok(updateNote);
+
+                }
+                else
+                {
+                    return NotFound();
+                }
+                
+            }
+            else
+            {
+                return BadRequest("invalid note data");
+
+            }
+        }
+
+        [HttpDelete]
+        [Route("NodeDelete")]
+
+        public IActionResult DeleteUserNode(int noteId)
+        {
+            int userId = int.Parse(User.Claims.Where(x => x.Type == "UserId").FirstOrDefault().Value);
+            if(userId!=0)
+            {
+                var delNode = _userNotes.DeleteNode(noteId, userId);
+                if(delNode!=null)
+                {
+                    return Ok(delNode);
+                }
+                else
+                {
+                    return BadRequest();
+                }
+            }
+            else
+            {
+                return BadRequest();
+            }
+
+        }
     }
 }

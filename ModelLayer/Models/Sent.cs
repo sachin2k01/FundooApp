@@ -17,14 +17,14 @@ namespace ModelLayer.Models
             try
             {
                 string frm_mail = "thenamesachin@gmail.com";
-                string frm_pass = "wxgr llne grof nxqb";
+                string frm_pass = "vokw sacn dgki ovmc";
                 MailMessage message = new MailMessage(frm_mail, emailTo);
 
 
                 //message.From = new MailAddress(frm_mail,emailTo);//forgot.eMail(Reciever Email)
                 message.Subject = "Forgot Password";
-                 string msgBody= "click here to reset your password "+token;
-                message.Body=msgBody;
+                string msgBody = "click here to reset your password  \n " + token;
+                message.Body = msgBody;
                 message.BodyEncoding = Encoding.UTF8;
                 message.IsBodyHtml = false;
 
