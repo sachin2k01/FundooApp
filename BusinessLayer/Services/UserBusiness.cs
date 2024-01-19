@@ -3,6 +3,7 @@ using MassTransit;
 using ModelLayer.Models;
 using RepositoryLayer.Entity;
 using RepositoryLayer.Interfaces;
+using ShareFile.Api.Client.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,14 +38,29 @@ namespace BusinessLayer.Services
             return await userRepo.ForgotPassword(emailTo, bus);
         }
 
-        public ProductEntity AddProduct(ProductModel product)
-        {
-            return userRepo.AddProduct(product);
-        }
 
         public UserEntity GetUsersById(int id)
         {
             return userRepo.GetUsersById(id);
+        }
+        public List<UserEntity> GetAllUsers()
+        {
+            return userRepo.GetAllUsers();
+        }
+
+        public UserEntity UpdateUser(int userid, RegisterModel updateproperties)
+        {
+            return userRepo.UpdateUser(userid, updateproperties);
+           
+        }
+        public string DeleteUser(int id)
+        {
+            return userRepo.DeleteUser(id);
+        }
+
+        public UserEntity GetUserByName(string userName)
+        {
+            return userRepo.GetUserByName(userName);
         }
     }
 }

@@ -64,27 +64,6 @@ namespace RepositoryLayer.Services
            
         }
 
-        //public async Task<string> UploadImage(IFormFile _formFile)
-        //{
-        //    string FileName = " ";
-        //    try
-        //    {
-        //        FileInfo fileInfo = new FileInfo(_formFile.FileName);
-        //        FileName = _formFile.FileName + "_" + DateTime.Now.Ticks.ToString() + fileInfo.Extension;
-        //        var _GetFilePath = FileHelper.GetFilePath(FileName);
-        //        using (var _FileStream = new FileStream(_GetFilePath, FileMode.Create))
-        //        {
-        //            await _formFile.CopyToAsync(_FileStream);
-        //        }
-        //        return FileName;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw ex;
-        //    }
-        //}
-
-
         public async Task<string> UploadImage(IFormFile formFile)
         {
             try
@@ -92,21 +71,18 @@ namespace RepositoryLayer.Services
                 string originalFileName = formFile.FileName;
                 string uniqueFileName = $"{Guid.NewGuid()}_{DateTime.Now.Ticks}{Path.GetExtension(originalFileName)}";
 
-                string filePath = Path.Combine(FileHelper.GetFilePath(""), uniqueFileName);
+                string filePath = FileHelper.GetFilePath(uniqueFileName);
 
                 using (var fileStream = new FileStream(filePath, FileMode.Create))
                 {
                     await formFile.CopyToAsync(fileStream);
                 }
 
-                return uniqueFileName;
+                return filePath;
             }
             catch (Exception ex)
             {
-                // Log the exception details, and either rethrow it or return a meaningful result
-                // Logging example:
-                // _logger.LogError($"Error uploading image: {ex}");
-                throw;
+                throw ex;
             }
         }
         public IEnumerable<ImageEntity> AddImages(int noteId, int userId, ICollection<IFormFile> files)

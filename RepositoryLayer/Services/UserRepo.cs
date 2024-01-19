@@ -1,4 +1,5 @@
 ﻿using MassTransit;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.VisualBasic;
@@ -155,23 +156,67 @@ namespace RepositoryLayer.Services
             }
            
         }
-
-        public ProductEntity AddProduct(ProductModel product)
-        {
-            ProductEntity prod = new ProductEntity();
-            prod.ProductName = product.ProductName;
-            prod.Brand=product.Brand;
-            prod.Quantity = product.Quantity;
-            fundooContext.Product.Add(prod);
-            fundooContext.SaveChanges();
-            return prod;
-        }    
+   
 
 
         public UserEntity GetUsersById(int id)
         {
             UserEntity user = fundooContext.Users.FirstOrDefault(x => x.UserId == id);
             return user;
+        }
+
+
+        public List<UserEntity> GetAllUsers()
+        {
+            var users= new List<UserEntity>();
+            users=fundooContext.Users.ToList();
+            return users;
+        }
+
+        public UserEntity UpdateUser(int userid, RegisterModel updateproperties) 
+        {
+            var existingUser = fundooContext.Users.Find(userid);
+            if(existingUser != null)
+            {
+                existingUser.FirstName = updateproperties.FirstName ?? existingUser.FirstName;
+                existingUser.LastName= updateproperties.LastName ?? existingUser.LastName;
+                existingUser.Email= updateproperties.Email ?? existingUser.Email;
+                existingUser.Password= updateproperties.Password ?? existingUser.Password;
+                fundooContext.SaveChanges();
+                return existingUser;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public string DeleteUser(int id)
+        {
+            var deleteUser = fundooContext.Users.Find(id);
+            if(deleteUser != null)
+            {
+                fundooContext.Users.Remove(deleteUser);
+                fundooContext.SaveChanges();
+                return "User Deleted Successfully";
+            }
+            else
+            {
+                return "Invaid UserId";
+            }
+        }
+
+        public UserEntity GetUserByName(string userName)
+        {
+            var UserDetails=fundooContext.Users.FirstOrDefault(x=>x.FirstName==userName);
+            if(UserDetails != null)
+            {
+                return UserDetails;
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }

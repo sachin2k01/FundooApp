@@ -9,6 +9,8 @@ using RepositoryLayer.Context;
 using RepositoryLayer.Entity;
 using RepositoryLayer.Interfaces;
 using RepositoryLayer.Services;
+using ShareFile.Api.Client.Models;
+using static MassTransit.Monitoring.Performance.BuiltInCounters;
 
 namespace FundooNotesApp.Controllers
 {
@@ -85,20 +87,6 @@ namespace FundooNotesApp.Controllers
             }
         }
 
-        [HttpPost("Products")]
-
-        public IActionResult AddProduct(ProductModel product)
-        {
-            var result = userBusiness.AddProduct(product);
-            if(result!=null)
-            {
-                return Ok(new ResponseModel<ProductEntity> { Success = true, Message = "Successfully add the products to table", Data = result });
-            }
-            else
-            {
-                return BadRequest(new ResponseModel<ProductEntity> { Success = false, Message = "Can't able to add products"});
-            }
-        }
 
         [HttpGet("Byid")]
         public IActionResult GetUserDetail(int id)
@@ -122,5 +110,78 @@ namespace FundooNotesApp.Controllers
             }
         }
 
+
+        [HttpGet]
+        [Route("All Users")]
+        public IActionResult GetAllUsers()
+        {
+            try
+            {
+                var users=userBusiness.GetAllUsers();
+                if(users!=null && users.Any())
+                {
+                    return Ok(new ResponseModel <List<UserEntity>> { Success = true, Message = "Successfully Fetch User Details", Data = users });
+
+                }
+                else
+                {
+                    return BadRequest("Not able to Fetch Data");
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+
+            }
+        }
+
+        [HttpPut]
+        [Route("Update user By Id")]
+        public IActionResult UpdateUserById(int id,RegisterModel registerModel)
+        {
+            var user=userBusiness.UpdateUser(id,registerModel);
+            if(user!=null)
+            {
+                return Ok(new ResponseModel<UserEntity> { Success = true, Message = "Successfully update User info",Data=user });
+            }
+            else
+            {
+                return BadRequest(new ResponseModel<UserEntity> { Success = false, Message = "Not able to update " });
+            }
+
+        }
+
+        [HttpDelete]
+        [Route("delete User")]
+
+        public IActionResult DeleteUser(int userid)
+        {
+            var deletedUser=userBusiness.DeleteUser(userid);
+            if(deletedUser!=null)
+            {
+                return Ok(deletedUser);
+            }
+            else
+            {
+                return BadRequest("Not Deleted");
+            }
+        }
+
+
+        [HttpGet("Name")]
+        public IActionResult GetUserByName(string  name)
+        {
+            var userDetails=userBusiness.GetUserByName(name);
+            if( userDetails!=null )
+            {
+                return Ok(userDetails);
+            }
+            else
+            {
+                return BadRequest("Invalid User Name");
+            }
+        }
     }
 }

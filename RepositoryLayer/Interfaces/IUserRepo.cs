@@ -11,9 +11,14 @@ namespace RepositoryLayer.Interfaces
         public string UserLogin(LoginModel login);
         public Task<string> ForgotPassword(string emailTo,IBus bus);
 
-        public ProductEntity AddProduct(ProductModel product);
-
         public UserEntity GetUsersById(int id);
+
+        public List<UserEntity> GetAllUsers();
+
+        public UserEntity UpdateUser(int userid, RegisterModel updateproperties);
+        public string DeleteUser(int id);
+
+        public UserEntity GetUserByName(string userName);
 
 
     }
