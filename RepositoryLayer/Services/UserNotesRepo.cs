@@ -132,7 +132,7 @@ namespace RepositoryLayer.Services
             catch (Exception ex)
             {
                 _logger.LogWarning(ex.Message);
-                throw ex;
+                throw;
             }
         }
 
