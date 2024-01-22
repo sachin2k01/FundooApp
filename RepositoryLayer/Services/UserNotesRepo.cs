@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.Extensions.Logging;
 using ModelLayer.Models;
+using NLog;
 using RepositoryLayer.Context;
 using RepositoryLayer.Entity;
 using RepositoryLayer.Interfaces;
@@ -17,16 +18,20 @@ namespace RepositoryLayer.Services
     public class UserNotesRepo:IUserNotesRepo
     {
         private readonly FundooContext _fundooContext;
-        public UserNotesRepo(FundooContext fundooContext)
+
+        private readonly ILogger<UserNotesRepo> _logger;
+        public UserNotesRepo(FundooContext fundooContext, ILogger<UserNotesRepo> logger)
         {
             this._fundooContext = fundooContext;
-            
+            _logger = logger;
+            _logger = logger;
         }
 
         public UserNotesEntity CreateUserNotes(UserNotesModel notes, int userId)
         {
             if(userId!=0)
             {
+                _logger.LogInformation("Inside the create user Nodes");
                 IEnumerable<ImageEntity> imageList = null;
                 UserEntity user=_fundooContext.Users.FirstOrDefault(u=>u.UserId==userId);
                 if(user!=null)
@@ -60,6 +65,7 @@ namespace RepositoryLayer.Services
             }
             else
             {
+                //_logger.LogInformation("Exit from the CreateUserNote");
                 return null;
             }
            
@@ -125,13 +131,16 @@ namespace RepositoryLayer.Services
             }
             catch (Exception ex)
             {
+                _logger.LogWarning(ex.Message);
                 throw ex;
             }
         }
 
         public UserNotesEntity GetNotesById(int noteId, int userId)
         {
+            _logger.LogInformation("Inside the GetNoteByid()");
            UserNotesEntity noteinfo= _fundooContext.UserNotes.FirstOrDefault(x=>x.NoteId==noteId&&x.UserId==userId);
+            _logger.LogWarning("Exit from GetNoteById()");
             return noteinfo;
         }
 
@@ -146,14 +155,16 @@ namespace RepositoryLayer.Services
         {
             try
             {
+                _logger.LogInformation("Inside the GetUserById");
                 var nodes = new List<UserNotesEntity>();
                 nodes = _fundooContext.UserNotes.Where(x => x.UserId == userId).ToList();
                 return nodes;
             }
             catch (Exception ex)
             {
-
+                _logger.LogWarning(ex.Message);
                 throw ex;
+                
             }
         }
 
@@ -189,7 +200,7 @@ namespace RepositoryLayer.Services
             {
                 return "Invalid Node";
             }
-
         }
+
     }
 }

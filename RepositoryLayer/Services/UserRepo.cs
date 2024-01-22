@@ -1,6 +1,8 @@
 ﻿using MassTransit;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.VisualBasic;
 using ModelLayer.Models;
@@ -24,12 +26,14 @@ namespace RepositoryLayer.Services
 {
     public class UserRepo : IUserRepo
     {
+        private readonly ILogger<UserRepo> logger;
         private readonly FundooContext fundooContext;
         private readonly IConfiguration configuration;
-        public UserRepo(FundooContext fundooContext,IConfiguration configuration)
+        public UserRepo(FundooContext fundooContext,IConfiguration configuration,ILogger<UserRepo> logger)
         {
             this.fundooContext = fundooContext;
             this.configuration = configuration;
+            this.logger = logger;
         }
 
         public UserEntity UserRegister(RegisterModel register)
@@ -95,6 +99,7 @@ namespace RepositoryLayer.Services
             }
             else
             {
+             
                 return null;
             }
         }
@@ -132,7 +137,7 @@ namespace RepositoryLayer.Services
                     var result=fundooContext.Users.FirstOrDefault(x => x.Email == emailTo);
                     if (result==null)
                     {
-                        return null;
+                        return "invalid email";
                     }
                     else
                     {
@@ -142,7 +147,7 @@ namespace RepositoryLayer.Services
 
                         Uri uri = new Uri("rabbitmq://localhost/NotesEmail_Queue");
                         var endpoint = await bus.GetSendEndpoint(uri);
-                        return "Message Sent Successfull";
+                        return tkn;
 
                     }
                    
@@ -168,6 +173,7 @@ namespace RepositoryLayer.Services
 
         public List<UserEntity> GetAllUsers()
         {
+            Trace.WriteLine("inside GetAllUser() debug log--------------------------");
             var users= new List<UserEntity>();
             users=fundooContext.Users.ToList();
             return users;
@@ -218,5 +224,72 @@ namespace RepositoryLayer.Services
                 return null;
             }
         }
+
+
+        public UserEntity NewUserUpdate(RegisterModel userinfo)
+        {
+            var userDetails=fundooContext.Users.FirstOrDefault(x=>x.Email==userinfo.Email);
+            if(userDetails != null)
+            {
+                if(userDetails.UserId!=null)
+                {
+                    userDetails.FirstName = userinfo.FirstName;
+                    userDetails.LastName = userinfo.LastName;
+                    userDetails.Email = userinfo.Email;
+                    userDetails.Password = userinfo.Password;
+                    fundooContext.SaveChanges();
+                    return userDetails;
+
+                }
+                else
+                {
+                    return null;
+                }
+
+            }
+            else
+            {
+                UserEntity user=new UserEntity();
+                user.FirstName = userinfo.FirstName;
+                user.LastName = userinfo.LastName;
+                user.Email = userinfo.Email;
+                user.Password=userinfo.Password;
+                fundooContext.Users.Add(user);
+                fundooContext.SaveChanges();
+                return user;
+            }
+        }
+
+        public List<UserEntity> GetPersonByAlphabet(string name)
+        {
+            var user = fundooContext.Users.Where(x => x.FirstName.StartsWith(name)).ToList();
+            if (user != null)
+            {
+                return user;
+
+            }
+            else
+            {
+                return null;
+            }           
+        }
+
+        public string ResetUserPassword(int userId,string email,string password,string confirm_Passoword)
+        {
+            var resetUser = fundooContext.Users.FirstOrDefault(x => x.UserId == userId && x.Email == email);
+            if(resetUser != null && password==confirm_Passoword)
+            {
+                resetUser.Password = EncryptPassword(password);
+                fundooContext.SaveChanges();
+                return "Password update successfull";
+            }
+            else
+            {
+                return "Invalid Credentials";
+            }
+
+        }
+
+
     }
 }

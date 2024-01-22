@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "nmv0nXKPgFOxOZbq88FCEG4HzXxw3xy+b0bvU3yU5UoyGZl8Uees+HnTogkbNnlI4N31T7UyT5XHJSPXwHxdXQ==",
+  "dgSpecHash": "C2KdiQqbGdqqejh3Bqa8EA0FdExveYm7EhlEVa/Z6Sg7S5zKJjKwJ2iSQMZg4/DdL+x/csVANJLyX23A/m+Whg==",
   "success": true,
   "projectFilePath": "C:\\Users\\Hp\\source\\repos\\FundooNotesApp\\RepositoryLayer\\RepositoryLayer.csproj",
   "expectedPackageFiles": [
@@ -69,6 +69,7 @@
     "C:\\Users\\Hp\\.nuget\\packages\\newid\\3.0.2\\newid.3.0.2.nupkg.sha512",
     "C:\\Users\\Hp\\.nuget\\packages\\newtonsoft.json\\11.0.2\\newtonsoft.json.11.0.2.nupkg.sha512",
     "C:\\Users\\Hp\\.nuget\\packages\\newtonsoft.json.bson\\1.0.1\\newtonsoft.json.bson.1.0.1.nupkg.sha512",
+    "C:\\Users\\Hp\\.nuget\\packages\\nlog\\5.2.8\\nlog.5.2.8.nupkg.sha512",
     "C:\\Users\\Hp\\.nuget\\packages\\rabbitmq.client\\6.0.0\\rabbitmq.client.6.0.0.nupkg.sha512",
     "C:\\Users\\Hp\\.nuget\\packages\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Users\\Hp\\.nuget\\packages\\runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",

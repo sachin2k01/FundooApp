@@ -18,5 +18,7 @@ namespace RepositoryLayer.Interfaces
         public UserNotesEntity UpdateNotes(int userId, int noteId, NotesUpdateModel notesModel);
         public string DeleteNode(int id, int userId);
 
+
+
     }
 }

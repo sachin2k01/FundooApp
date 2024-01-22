@@ -9,6 +9,7 @@ using Microsoft.OpenApi.Models;
 using RepositoryLayer.Context;
 using RepositoryLayer.Interfaces;
 using RepositoryLayer.Services;
+using ShareFile.Api.Client.Models;
 using System.Text;
 
 namespace FundooNotesApp
@@ -19,7 +20,6 @@ namespace FundooNotesApp
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
 
             builder.Services.AddControllers();
             builder.Services.AddTransient<IUserBusiness, UserBusiness>();
@@ -30,6 +30,7 @@ namespace FundooNotesApp
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
 
 
             //swagger authorization code
@@ -102,11 +103,20 @@ namespace FundooNotesApp
             //// Add MassTransit hosted service for health checks
             //builder.Services.AddMassTransitHostedService();
 
+            builder.Services.AddLogging();
 
-
+            // Add services to the container.
+            builder.Host.ConfigureLogging(logging =>
+            {
+                logging.ClearProviders();
+                logging.AddConsole();
+                logging.AddDebug();
+            });
 
 
             var app = builder.Build();
+
+
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
@@ -121,7 +131,6 @@ namespace FundooNotesApp
             app.UseAuthentication();
 
             app.UseAuthorization();
-
 
             app.MapControllers();
 

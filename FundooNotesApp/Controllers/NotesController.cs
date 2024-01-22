@@ -14,10 +14,11 @@ namespace FundooNotesApp.Controllers
     public class NotesController : ControllerBase
     {
         private readonly IUserBusinessNotes _userNotes;
-        public NotesController(IUserBusinessNotes userNotes)
+        private readonly ILogger<NotesController> _logger;
+        public NotesController(IUserBusinessNotes userNotes, ILogger<NotesController> logger)
         {
             this._userNotes = userNotes;
-            
+            _logger = logger;
         }
 
         [HttpPost]
@@ -51,6 +52,7 @@ namespace FundooNotesApp.Controllers
         [Route("NoteById")]
         public IActionResult GetNoteById(int id)
         {
+            //_logger.LogInformation("Entered into GetNodeBy Id Controller");
             int userId = int.Parse(User.Claims.Where(x => x.Type == "UserId").FirstOrDefault().Value);
             var noteInfo=_userNotes.GetNotesById(id,userId);
             if(noteInfo != null)
@@ -92,6 +94,7 @@ namespace FundooNotesApp.Controllers
             }
             else
             {
+               
                 return BadRequest();
             }
 

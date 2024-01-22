@@ -21,18 +21,20 @@ namespace FundooNotesApp.Controllers
         private readonly IUserBusiness userBusiness;
 
         private readonly IBus bus;
+        private readonly ILogger<UserController> logger;
 
-        public UserController(IUserBusiness userBusiness,IBus bus)
+        public UserController(IUserBusiness userBusiness,IBus bus, ILogger<UserController> logger)
         {
             this.userBusiness = userBusiness;
             this.bus = bus;
-
+            this.logger = logger;
         }
 
         [HttpPost]
         [Route("register")]
         public IActionResult Register(RegisterModel model)
         {
+            logger.LogInformation("Inside the register Controller");
             var result = userBusiness.UserRegister(model);
             if (result != null)
             {
@@ -42,6 +44,7 @@ namespace FundooNotesApp.Controllers
             {
                 return BadRequest(new ResponseModel<UserEntity> { Success = false, Message = "Register Not Successfull" });
             }
+            
 
         }
 
@@ -181,6 +184,63 @@ namespace FundooNotesApp.Controllers
             {
                 return BadRequest("Invalid User Name");
             }
+        }
+
+
+        [HttpPost]
+        [Route("Update/create")]
+        public IActionResult CreateOrUpdateUser(RegisterModel registerModel)
+        {
+            var userinfo=userBusiness.NewUserUpdate(registerModel);
+            if(userinfo!=null)
+            {
+                return Ok(new ResponseModel<UserEntity> { Success = true, Message = "Successfully update User info", Data = userinfo });
+            }
+            else
+            {
+                return BadRequest(new ResponseModel<UserEntity> { Success = false, Message = "Invalid info"});
+            }
+        }
+
+        [HttpGet]
+        [Route("GetByFirstLetter")]
+        public IActionResult GetAlluserByAlphabet(string name)
+        {
+            var user = userBusiness.GetPersonByAlphabet(name);
+            if(user!=null)
+            {
+                return Ok(user);
+            }
+            else
+            {
+                return BadRequest("No Users Found");
+            }            
+        }
+
+
+        [Authorize]
+        [HttpPut]
+        public IActionResult ResetPassword(string password,string confirm_password)
+        {
+            int reset_user_id = int.Parse(User.Claims.Where(x => x.Type == "UserId").FirstOrDefault().Value);
+            string reset_user_email = (User.Claims.Where(x => x.Type == "Email").FirstOrDefault().Value);
+            if (reset_user_id!=null&& reset_user_email!=null)
+            {
+                var sucess = userBusiness.ResetUserPassword(reset_user_id, reset_user_email, password, confirm_password);
+                if(sucess!=null)
+                {
+                    return Ok(new ResponseModel<string> { Success = true, Data = sucess }); ; 
+                }
+                else
+                {
+                    return BadRequest(new ResponseModel<string> { Success = false, Message = "Not able to update password" });  ;
+                }
+            }
+            else
+            {
+                return BadRequest();
+            }
+
         }
     }
 }

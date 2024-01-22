@@ -62,5 +62,20 @@ namespace BusinessLayer.Services
         {
             return userRepo.GetUserByName(userName);
         }
+
+        public UserEntity NewUserUpdate(RegisterModel userinfo)
+        {
+            return userRepo.NewUserUpdate(userinfo);
+        }
+
+        public List<UserEntity> GetPersonByAlphabet(string name)
+        {
+            return userRepo.GetPersonByAlphabet(name);
+        }
+
+        public string ResetUserPassword(int userId, string email, string password, string confirm_Passoword)
+        {
+            return userRepo.ResetUserPassword(userId, email, password, confirm_Passoword);
+        }
     }
 }

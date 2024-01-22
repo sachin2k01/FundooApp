@@ -20,6 +20,11 @@ namespace RepositoryLayer.Interfaces
 
         public UserEntity GetUserByName(string userName);
 
+        public UserEntity NewUserUpdate(RegisterModel userinfo);
+
+        public List<UserEntity> GetPersonByAlphabet(string name);
+        public string ResetUserPassword(int userId, string email, string password, string confirm_Passoword);
+
 
     }
 }
