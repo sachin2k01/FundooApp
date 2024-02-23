@@ -24,7 +24,7 @@ namespace FundooNotesApp.Controllers
         [HttpPost]
         [Route("Notes")]
         [Authorize]
-        public IActionResult UserNoteCreation([FromForm]UserNotesModel userNotes)
+        public IActionResult UserNoteCreation(UserNotesModel userNotes)
         {
             try
             {
@@ -129,6 +129,7 @@ namespace FundooNotesApp.Controllers
 
         [HttpDelete]
         [Route("NodeDelete")]
+        [Authorize]
 
         public IActionResult DeleteUserNode(int noteId)
         {
@@ -151,5 +152,82 @@ namespace FundooNotesApp.Controllers
             }
 
         }
+
+        [HttpPut]
+        [Route("archieveNote")]
+        [Authorize]
+        public IActionResult ArchiveNote(int noteId)
+        {
+            int userId = int.Parse(User.Claims.Where(x => x.Type == "UserId").FirstOrDefault().Value);
+            if(userId!=0)
+            {
+                var notes = _userNotes.ArchieveNotes(userId, noteId);
+                if(notes!=null)
+                {
+                    return Ok(notes);
+                }
+                else
+                {
+                    return BadRequest();
+                }
+            }
+            else
+            {
+                return BadRequest();
+            }
+
+        }
+
+
+        [HttpPut]
+        [Route("trashNote")]
+        [Authorize]
+        public IActionResult TrashNote(int noteId)
+        {
+            int userId = int.Parse(User.Claims.Where(x => x.Type == "UserId").FirstOrDefault().Value);
+            if (userId != 0)
+            {
+                var notes = _userNotes.TrashNotes(userId, noteId);
+                if (notes != null)
+                {
+                    return Ok(notes);
+                }
+                else
+                {
+                    return BadRequest();
+                }
+            }
+            else
+            {
+                return BadRequest();
+            }
+
+        }
+
+        [HttpPut]
+        [Route("addColorToNote")]
+        [Authorize]
+        public IActionResult AddColor(int noteId, string color )
+        {
+            int userId = int.Parse(User.Claims.Where(x => x.Type == "UserId").FirstOrDefault().Value);
+            if (userId != 0)
+            {
+                var notes = _userNotes.AddNoteColor(userId, noteId, color);
+                if (notes != null)
+                {
+                    return Ok(notes);
+                }
+                else
+                {
+                    return BadRequest();
+                }
+            }
+            else
+            {
+                return BadRequest();
+            }
+
+        }
+
     }
 }

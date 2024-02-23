@@ -115,10 +115,20 @@ namespace FundooNotesApp
                 logging.AddDebug();
             });
 
+            //cross vlidate from angular for AllowOrigin"
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowOrigin",
+                    builder => builder.WithOrigins("http://localhost:4200")
+                        .AllowAnyHeader()
+                        .AllowAnyMethod()
+                        .AllowCredentials()
+                           .SetPreflightMaxAge(TimeSpan.FromSeconds(86400)));
+            });
 
             var app = builder.Build();
 
-
+            app.UseCors("AllowOrigin");
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())

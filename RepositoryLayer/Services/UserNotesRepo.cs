@@ -32,7 +32,7 @@ namespace RepositoryLayer.Services
             if(userId!=0)
             {
                 _logger.LogInformation("Inside the create user Nodes");
-                IEnumerable<ImageEntity> imageList = null;
+                //IEnumerable<ImageEntity> imageList = null;
                 UserEntity user=_fundooContext.Users.FirstOrDefault(u=>u.UserId==userId);
                 if(user!=null)
                 {
@@ -52,10 +52,10 @@ namespace RepositoryLayer.Services
 
                     _fundooContext.UserNotes.Add(notesEntity);
                     _fundooContext.SaveChanges();
-                    if (notes.ImagePaths!=null)
-                    {
-                        imageList = AddImages(notesEntity.NoteId, userId, notes.ImagePaths);
-                    }
+                    //if (notes.ImagePaths!=null)
+                    //{
+                    //    imageList = AddImages(notesEntity.NoteId, userId, notes.ImagePaths);
+                    //}
                         return notesEntity;
                 }
                 else
@@ -187,18 +187,64 @@ namespace RepositoryLayer.Services
             }
         }
 
-        public string DeleteNode(int id,int userId)
+        public UserNotesEntity DeleteNode(int id,int userId)
         {
             var delNode=_fundooContext.UserNotes.FirstOrDefault(x=>x.NoteId==id && x.UserId==userId);
             if(delNode != null)
             {
                 _fundooContext.UserNotes.Remove(delNode);
                 _fundooContext.SaveChanges();
-                return "Node Deleted Successfully";
+                return delNode;
             }
             else
             {
-                return "Invalid Node";
+                return null;
+            }
+        }
+
+        public UserNotesEntity ArchieveNotes(int userId,int noteId)
+        {
+            var notes=_fundooContext.UserNotes.FirstOrDefault(x=>x.UserId==userId && x.NoteId==noteId);
+            if(notes != null)
+            {
+                notes.IsArchive=!notes.IsArchive;
+                _fundooContext.SaveChanges();
+                return notes;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+
+        public UserNotesEntity TrashNotes(int userId, int noteId)
+        {
+            var notes = _fundooContext.UserNotes.FirstOrDefault(x => x.UserId == userId && x.NoteId == noteId);
+            if (notes != null)
+            {
+                notes.IsTrash = !notes.IsTrash;
+                _fundooContext.SaveChanges();
+                return notes;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public UserNotesEntity AddNoteColor(int userId,int noteId,string color) 
+        {
+            var notes = _fundooContext.UserNotes.FirstOrDefault(x => x.UserId == userId && x.NoteId == noteId);
+            if(notes!=null)
+            {
+                notes.Color=color;
+                _fundooContext.SaveChanges();
+                return notes;
+            }
+            else
+            {
+                return null;
             }
         }
 

@@ -1,13 +1,5 @@
 ﻿using ModelLayer.Models;
 using RepositoryLayer.Entity;
-using RepositoryLayer.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ModelLayer.Models;
-using RepositoryLayer.Entity;
 using BusinessLayer.Interface;
 using RepositoryLayer.Interfaces;
 using Microsoft.AspNetCore.Http;
@@ -43,9 +35,23 @@ namespace BusinessLayer.Services
         {
             return _notesrepo.UpdateNotes(userId, noteId, notesModel);
         }
-        public string DeleteNode(int id, int userId)
+        public UserNotesEntity DeleteNode(int id, int userId)
         {
             return _notesrepo.DeleteNode(id, userId);
+        }
+
+        public UserNotesEntity ArchieveNotes(int userId, int noteId)
+        {
+            return _notesrepo.ArchieveNotes(userId, noteId);
+        }
+
+        public UserNotesEntity TrashNotes(int userId, int noteId)
+        {
+            return _notesrepo.TrashNotes(userId, noteId);
+        }
+        public UserNotesEntity AddNoteColor(int userId, int noteId, string color)
+        {
+            return _notesrepo.AddNoteColor(userId, noteId, color);
         }
     }
 }

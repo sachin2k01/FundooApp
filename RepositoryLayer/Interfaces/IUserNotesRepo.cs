@@ -16,7 +16,13 @@ namespace RepositoryLayer.Interfaces
         public List<UserNotesEntity> GetAllNodes();
         public List<UserNotesEntity> GetUserNotesById(int userId);
         public UserNotesEntity UpdateNotes(int userId, int noteId, NotesUpdateModel notesModel);
-        public string DeleteNode(int id, int userId);
+        public UserNotesEntity DeleteNode(int id, int userId);
+
+        public UserNotesEntity ArchieveNotes(int userId, int noteId);
+
+        public UserNotesEntity TrashNotes(int userId, int noteId);
+
+        public UserNotesEntity AddNoteColor(int userId, int noteId, string color);
 
 
 
