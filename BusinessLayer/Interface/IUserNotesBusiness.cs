@@ -15,7 +15,7 @@ namespace BusinessLayer.Interface
         public UserNotesEntity GetNotesById(int noteId,int userId);
         public List<UserNotesEntity> GetAllNodes();
         public List<UserNotesEntity> GetUserNotesById(int userId);
-        public UserNotesEntity UpdateNotes(int userId, int noteId, NotesUpdateModel notesModel);
+        public UserNotesEntity UpdateNotes(int noteId, int userId, NotesUpdateModel notesModel);
         public UserNotesEntity DeleteNode(int id, int userId);
 
         public UserNotesEntity ArchieveNotes(int userId, int noteId);

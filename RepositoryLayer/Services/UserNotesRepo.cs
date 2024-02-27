@@ -168,14 +168,13 @@ namespace RepositoryLayer.Services
             }
         }
 
-        public UserNotesEntity UpdateNotes(int  userId, int noteId, NotesUpdateModel notesModel)
+        public UserNotesEntity UpdateNotes(int noteId, int userId, NotesUpdateModel notesModel)
         {
             var userNotes = _fundooContext.UserNotes.FirstOrDefault(x => x.NoteId == noteId && x.UserId == userId);
             if(userNotes != null)
             {
                 userNotes.Title=notesModel.Title ?? userNotes.Title;
                 userNotes.Description=notesModel.Description ?? userNotes.Description;
-                userNotes.Color=notesModel.Color ?? userNotes.Color;
                 userNotes.ModifiedAt=DateTime.Now;
                 _fundooContext.SaveChanges();
 

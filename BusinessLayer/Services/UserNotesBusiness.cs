@@ -31,9 +31,9 @@ namespace BusinessLayer.Services
         {
             return _notesrepo.GetUserNotesById(userId);
         }
-        public UserNotesEntity UpdateNotes(int userId, int noteId, NotesUpdateModel notesModel)
+        public UserNotesEntity UpdateNotes(int noteId, int userId, NotesUpdateModel notesModel)
         {
-            return _notesrepo.UpdateNotes(userId, noteId, notesModel);
+            return _notesrepo.UpdateNotes(noteId, userId, notesModel);
         }
         public UserNotesEntity DeleteNode(int id, int userId)
         {
